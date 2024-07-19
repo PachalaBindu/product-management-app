@@ -1,0 +1,5 @@
+FROM openjdk:11-jdk-alpine
+
+COPY target/ProductAppUsingDocker-0.0.1-SNAPSHOT.jar ProductAppUsingDocker-0.0.1-SNAPSHOT.jar 
+
+ENTRYPOINT [ "java","-jar","/ProductAppUsingDocker-0.0.1-SNAPSHOT.jar"]

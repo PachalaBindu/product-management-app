@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  product-app-compose:
+    build:
+     context: .
+    image: "product-app"
+    ports:
+      - "8080:8080"
+    depends_on: 
+      - demoapp
+    networks:
+      - my-network
+
+  demoapp:
+    image: mysql:8.3.0
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: productdb
+    volumes:
+      - my-volume:/var/lib/mysql
+    networks:
+      - my-network  
+  
+# Volumes
+volumes:
+  my-volume:
+
+networks:
+  my-network:
